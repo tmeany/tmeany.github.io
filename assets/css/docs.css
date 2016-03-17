@@ -195,8 +195,8 @@ h2.doc-header{
   padding-left: 5%;
   padding-right: 5%;
   /*background-color: #262e3b;*/
-  background-image:url(/assets/img/project_papper/project_papper.png); 
-  background-repeat:repeat;
+  background-image:url(/assets/img/biohack-poster.png); 
+  /*background-repeat:repeat;*/
 }
 
 .section1 h1{
@@ -207,6 +207,7 @@ h2.doc-header{
 .section1 p{
  color: #95989d; 
  font-size: 2em;
+ text-align: right;
 }
 
 .section1 a .fa-2x {
@@ -219,7 +220,7 @@ margin-top: 0px;
 .section1 .proto{
   background-color: white;
   height: 100%;
-  position: relative;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
