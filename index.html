@@ -13,7 +13,7 @@ title: Welcome
 			<div class="row">
 				<div class="col-lg-5">
 					<div class="index-header wow fadeIn">
-						<h1><img src="assets/img/biohack-poster.png" alt="Synbiobeta" width="500" height="400"></img></h1>
+						<h1>Bio-Hackathon</h1>
 			  			<p>The UK's first Bio inspired Hackathon hosted by CUTEC.</p>
 						<a href="https://docs.google.com/forms/d/156LWmzeesaH2bano0HobmLVn0gSrMA8NDbmZ6QrvFZs/edit?usp=drive_web" style="width:150px;" type="button" id="dl-button" class="btn btn-primary btn-lg">Enter!<i class="fa fa-2x fa-arrow-circle-o-down"></i></i></a>
 					</div>
@@ -57,13 +57,25 @@ title: Welcome
 							</h2>
 							<h3><img src="assets/img/plantsci.png" alt="laser and photonics reviews May issue" width="400" height="100"></img></h3>
 							</div>
+							<div id="map"></div>
+   							 <script>
+					      						function initMap() {
+					        var mapDiv = document.getElementById('map');
+					        var map = new google.maps.Map(mapDiv, {
+					          center: {lat: 44.540, lng: -78.546},
+					          zoom: 8
+					        });
+					     	 }
+					   		 </script>
+					   		 <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+					        async defer></script>
 					</div>
 				</section>
 
 				<section id="section4">
 					<div class="row">
 							<div class="col-lg-4 col-lg-offset-4">
-								<h1 id="enter"><a href="https://docs.google.com/forms/d/156LWmzeesaH2bano0HobmLVn0gSrMA8NDbmZ6QrvFZs/edit?usp=drive_web">- Entry</a></h1>
+								<h1 id="enter"><a href="https://docs.google.com/forms/d/156LWmzeesaH2bano0HobmLVn0gSrMA8NDbmZ6QrvFZs/edit?usp=drive_web">Entry</a></h1>
 								<ul>
 				              <li></li>
 				              <li> The cost of the competition is £400 which covers accommodation for 5 nights and attendance at the Technology ventures conference. Meals are not included. Scholarships are available and we encourage those without funding to apply.</li>
@@ -81,7 +93,7 @@ title: Welcome
 	<section id="section5">
 					<div class="row">
 							<div class="col-lg-4 col-lg-offset-4">
-								<h1 id="scholar"><a href="https://docs.google.com/forms/d/156LWmzeesaH2bano0HobmLVn0gSrMA8NDbmZ6QrvFZs/edit?usp=drive_web">- Entry</a></h1>
+								<h1 id="scholar"><a href="https://docs.google.com/forms/d/156LWmzeesaH2bano0HobmLVn0gSrMA8NDbmZ6QrvFZs/edit?usp=drive_web">- Scholarships</a></h1>
 								<ul>
 				              <li></li>
 				              <li> We encourage you to apply for funding from other sources and are happy to advise. We want EVERYONE to be able to attend this event. If you don’t have other funding sources then please apply for a scholarship which will cover travel and accommodation.</li>
