@@ -73,6 +73,10 @@ code {
 
 /*DOCS MENU*/
 
+.col-lg-7proto li {
+  padding-right: 25px
+}
+
 ul{
   list-style: none;
 }
