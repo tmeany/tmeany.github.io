@@ -300,6 +300,15 @@ margin-top: 0px;
   padding-left: 10%;
   padding-right: 10%;
 }
+#section6{
+  width: 100%;
+  min-height: 400px;
+  padding-top: 100px;
+  padding-bottom: 50px;
+  padding-left: 10%;
+  padding-right: 10%;
+  background-color: #87CEEB;
+}
 
 .blurb{
   margin-top: 60px;
