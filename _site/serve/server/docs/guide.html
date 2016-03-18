@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <title>Irish water fountain - Getting Started</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Le styles -->
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/css/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/assets/css/docs.css" rel="stylesheet">
+    <link href="/assets/css/animate.css" rel="stylesheet">
+
+    <script src="/assets/js/wow.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+
+  </head>
+  <body>
+
+        <nav class="navbar navbar-default" role="navigation">
+          <div class="navbar-collapse">
+
+              <ul class="nav navbar-nav">
+                <li><a class="brand" href="/">Fountain</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#blog">Blog</a></li>
+                </li>
+              </ul>
+
+
+          </div>
+    </nav>
+
+    <div class="container docs">
+      <div class="row">
+        <div class="col-lg-3">
+          <ul id="menu" class="list-group" data-spy="affix">
+            <li data-section="rino/docs/installation"><a href="/rino/docs/installation.html">Installation</a></li>
+            
+
+            <li data-section="rino/docs/guide"><a href="/rino/docs/guide.html">Guide</a></li>
+            
+              <ul id="librarymenu" class="list-group">
+                <li data-section="example"><a href="/rino/docs/guide.html#example">Example</a></li>
+                <li data-section="initialise"><a href="/rino/docs/guide.html#initialise">Initialise</a></li>
+                <li data-section="track"><a href="/rino/docs/guide.html#track">Track</a></li>
+                <li data-section="untrack"><a href="/rino/docs/guide.html#untrack">Untrack</a></li>
+                <li data-section="commit"><a href="/rino/docs/guide.html#commit">Commit</a></li>
+                <li data-section="list"><a href="/rino/docs/guide.html#list">List</a></li>
+                <li data-section="checkout"><a href="/rino/docs/guide.html#checkout">Checkout</a></li>
+              </ul>
+            
+
+
+            <li data-section="rino/docs/library"><a href="/rino/docs/library.html">Library</a></li>
+            
+          </ul>
+        </div>
+        <div class="col-lg-9">
+          <p><section class="guide"></p>
+
+<div class="page-header">
+  <h1>Rino guide</h1>
+</div>
+
+
+<p>Rino aims to be like git but for data, and is made mostly for applications in scientific computing. It will take a snapshot of the input and output of a given simulation run and save it in a well organised repository.</p>
+
+<pre><code>usage: rino &lt;command&gt; [&lt;args&gt;]
+
+rino commands:
+    init         Initialises a rino repository
+    track        Adds files for rino to track
+    untrack      Removes files from rino tracking
+    commit       Records all the tracked files to the repository
+    list         Lists all of the commits made
+    checkout     Restores the parameters of a certain commit
+</code></pre>
+
+<h2 class="doc-header" id="example"><a href="#example">Example</a></h2>
+
+
+<p>Lets say you have a simulation, or data analysis program organised as follows:</p>
+
+<pre><code>myanalysis/
+  |
+  |-- analysis.py
+  |-- parameters.json
+  |__ output/
+  |     |
+  |     |-- data.txt
+  |     |-- plot.png
+</code></pre>
+
+<p>The <code>analysis.py</code> file takes parameters from <code>parameters.json</code> and generates some data, with a little bit of randomness thrown in, and writes the data and a plot to <code>output</code>.</p>
+
+<p>Lets assume that this program is run <strong>a lot</strong> and there is a ton of different parameters to be checked out. It could become a pain to manage all the generated data manually. Thats where <code>rino</code> comes in!</p>
+
+<p>Rino will manage all of the parameters and data for you! Just start with</p>
+
+<pre><code>$ rino init
+rino: Initialised rino repository.
+</code></pre>
+
+<p>This will initialise a rino repository in the <code>myanalysis</code> folder. It simply makes a folder called <code>rino/</code> and a file called <code>rinofile.json</code>.</p>
+
+<pre><code>myanalysis/
+  |
+  |-- analysis.py
+  |-- parameters.json
+  |__ output/
+  |     |
+  |     |-- data.txt
+  |     |-- plot.png
+  |__ rino/
+  |     |-- rinofile.json
+</code></pre>
+
+<p>Now lets say we want Rino to keep tabs on the <code>parameters.json</code> file and the <code>output</code> directory.</p>
+
+<pre><code>$ rino track output/ -p parameters.json
+
+rino: 'output/' is now being tracked by rino.
+rino: 'parameters.json' is now being tracked as a parameter by rino.
+</code></pre>
+
+<p>When we want to save a snapshot of this data Rino will take care of it. We could easily
+take out the <code>-p</code> option and have <code>rino track output/ parameters.json</code> and Rino will still track all the
+files, but the <code>-p</code> option specifies to Rino that <code>parameters.json</code> contains an input which will be useful later.</p>
+
+<p>To commit these tracked files to the repository we simply write</p>
+
+<pre><code>$ rino commit -l "some label or tag" -m "some message about the data"
+
+rino: committing 'parameters.json'
+rino: committing 'output/data.txt'
+rino: committing 'output/plot.png'
+</code></pre>
+
+<p>where the <code>-l</code> and <code>-m</code> options are optional.</p>
+
+<p>Rino will then create a commit in the <code>rino/</code> directory and put the data there.
+Our <code>rino</code> directory now looks like this:</p>
+
+<pre><code>rino/
+  |-- rinofile.json
+  |__ 10_36_Thu_May_2014_903152/
+  |     |
+  |     |-- commit.json
+  |     |-- parameters.json
+  |     |__ output/
+  |     |     |
+  |     |     |-- data.txt
+  |     |     |-- plot.png
+</code></pre>
+
+<p>We can happily continue generating data and committing into Rino. If we want to get a list of the commits we simply
+use</p>
+
+<pre><code>$ rino list
+
+commit ac977d8c1e2342f29e6c7f79631a0d38
+author: eoinmurray  &lt;me@eoinmurray.io&gt;
+label(s): ['random_data']
+on Fri May 30 14 at 16:54
+   a message about the data
+size: 45.3KB, files: 4
+
+commit b9a4181927d44525a8555fb0280e04d9
+author: eoinmurray  &lt;me@eoinmurray.io&gt;
+label(s): ['random_data', 'run_2']
+on Fri May 30 14 at 16:55
+   another descriptive message
+size: 46.2KB, files: 4
+
+commit 2bf2321c35894bfda4cca5501837403e
+author: eoinmurray  &lt;me@eoinmurray.io&gt;
+label(s): ['random_data', 'exponential', 'run_3']
+on Fri May 30 14 at 16:55
+   and another descriptive message....
+size: 46.2KB, files: 4
+</code></pre>
+
+<p>Now lets say we wish to revert our analysis directory to the state of a certain commit. Its easy:</p>
+
+<pre><code>$ rino checkout b9a418
+
+Reverting to parameters from commit &lt;b9a4181927d44525a8555fb0280e04d9&gt;
+restoring: 'parameters.json'
+</code></pre>
+
+<p>This replaces the parameter files in the working directory with those from the commit. Dont worry
+Rino will <strong>not</strong> overwrite your data if its not committed!</p>
+
+<p>To checkout all of the data and not just the parameters we pass the "-d" option</p>
+
+<pre><code>$ rino checkout b9a418 -d
+
+Reverting to parameters from commit &lt;b9a4181927d44525a8555fb0280e04d9&gt;
+restoring: 'output/data.txt'
+restoring: 'output/plot.png'
+restoring: 'parameters.json'
+</code></pre>
+
+<h2>Commands</h2>
+
+<h2 class="doc-header" id="initialise"><a href="#initialise">Initialise</a></h2>
+
+
+<p>Initialises a rino repository in the current directory</p>
+
+<pre><code>usage: rino init
+</code></pre>
+
+<h2 class="doc-header" id="track"><a href="#track">Track</a></h2>
+
+
+<p>tracks a path to be committed</p>
+
+<pre><code>usage: rino track &lt;pathspec&gt; -p &lt;pathspec&gt;
+   -p &lt;pathspec&gt;
+       files/directories that contain inputs or parameters
+</code></pre>
+
+<h2 class="doc-header" id="untrack"><a href="#untrack">Untrack</a></h2>
+
+
+<p>untracks a path so that it will not be committed</p>
+
+<pre><code>usage: rino untrack &lt;pathspec&gt;
+</code></pre>
+
+<h2 class="doc-header" id="commit"><a href="#commit">Commit</a></h2>
+
+
+<p>Commits all the tracked files/directories to the repository</p>
+
+<pre><code>usage: rino commit [-m &lt;message&gt;] [-l &lt;label&gt;]
+   -m &lt;message&gt;
+      a message to be included in the commit
+   -l &lt;label&gt;
+      a label, or some identifier for the data
+   -h
+      shows this help message
+</code></pre>
+
+<h2 class="doc-header" id="list"><a href="#list">List</a></h2>
+
+
+<p>Lists all the commits made to the repository</p>
+
+<pre><code>usage: rino list
+</code></pre>
+
+<h2 class="doc-header" id="checkout"><a href="#checkout">Checkout</a></h2>
+
+
+<p>Restores the parameter files from a commit</p>
+
+<pre><code>usage: rino checkout &lt;commit id&gt; [-d]
+   -d
+      will also restore the non-parameter data
+   -f
+      forces overwrite of non-commited data
+</code></pre>
+
+<p>There are a lot of support services that I'll come up with and eventually add, like a built in server to allow a stylish way to browse simulation runs.</p>
+
+<p></section></p>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+	Made with <i class="fa fa-heart-o"></i> by <a href="http://github.com/eoinmurray"> Eoin Murray</a> and  <a href="http://github.com/tmeany"> Tom Meany</a>
+</div>
+    <style>
+
+    </style>
+    </script>
+    <script src="/rino/assets/js/bootstrap.js">
+    </script>
+
+    <script>
+      $('#menu [data-section="rino/docs/guide"]').addClass('active');
+    </script>
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33987438-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <script type="text/javascript">
+        function isScrolledIntoView(elem){
+            var docViewTop = $(window).scrollTop();
+            var docViewBottom = docViewTop + $(window).height();
+
+            var elemTop = $(elem).offset().top;
+            var elemBottom = elemTop + $(elem).height();
+
+            return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+        }
+
+        var activateList = function(id){
+            $('#menu').find('li').each(function(i, el){
+                if($(el).attr('data-section') === id ){
+                    $(el).addClass('active')
+                }
+                else{
+                    $(el).removeClass('active')
+                }
+            })
+        }
+
+        $(window).scroll(function(){
+            $('h2').each(function(i, el){
+                if(isScrolledIntoView(el)){
+                    id = $(el).attr('id')
+                    activateList(id)
+                }
+            })
+        })
+    </script>
+  </body>
+</html>
+
