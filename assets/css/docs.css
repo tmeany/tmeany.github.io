@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  font-family: 'ProximaNova-Regular', Helvetica, sans-serif;
+  font-family: Courier;
   height: 100%;
 }
 
@@ -190,14 +190,14 @@ h2.doc-header{
 .section1{
   width: 100%;
 
-  /*min-height: 100%;*/
-  margin-top: -60px;
-  /*padding-top: 60px;*/
+  min-height: 100%;
+  margin-top: -900px;
+  padding-top: 1200px;
   padding-left: 5%;
   padding-right: 5%;
   /*background-color: #262e3b;*/
   background-image:url(/assets/img/biohack-poster.png); 
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
 }
 
@@ -257,6 +257,7 @@ margin-top: 0px;
 
 #section2 p{
   color: #fafafa;
+  text-align: justify;
 }
 
 .section3{
@@ -266,6 +267,7 @@ margin-top: 0px;
   padding-bottom: 50px;
   padding-left: 10%;
   padding-right: 10%;
+  text-align: justify;
 }
 
 
@@ -293,6 +295,7 @@ margin-top: 0px;
   padding-left: 10%;
   padding-right: 10%;
   background-color: #87CEEB;
+  text-align: center;
 }
 
 #section5{
@@ -302,6 +305,7 @@ margin-top: 0px;
   padding-bottom: 50px;
   padding-left: 10%;
   padding-right: 10%;
+  text-align: justify;
 }
 #section6{
   width: 100%;
