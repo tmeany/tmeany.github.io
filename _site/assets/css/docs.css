@@ -191,10 +191,10 @@ h2.doc-header{
   width: 100%;
 
   min-height: 100%;
-  margin-top: -900px;
-  padding-top: 1200px;
-  padding-left: 5%;
-  padding-right: 5%;
+  margin-top: -450px;
+  padding-top: 800px;
+  padding-left: 10%;
+  padding-right: 10%;
   /*background-color: #262e3b;*/
   background-image:url(/assets/img/biohack-poster.png); 
   background-position: center;
@@ -227,7 +227,7 @@ margin-top: 0px;
   bottom: 0;
   left: 0;
   right: 0;
-  min-height: 450px;
+  min-height: 650px;
   margin-top: 50px;
 }
 
