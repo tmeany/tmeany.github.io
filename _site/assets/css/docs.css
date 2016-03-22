@@ -70,7 +70,20 @@ code {
   color: #0088cc;
 }
 
-
+#forkme_banner {
+  display: block;
+  position: absolute;
+  top:0;
+  right: 10px;
+  z-index: 10;
+  padding: 10px 50px 10px 10px;
+  color: #fff;
+  background: url('../img/blacktocat.png') #0090ff no-repeat 95% 50%;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(0,0,0,.5);
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
 /*DOCS MENU*/
 
 .col-lg-7proto p {
@@ -173,7 +186,6 @@ h2.doc-header{
 
 /*FOOTER*/
 
-
 #footer {
   font-size: 1.6em;
   font-weight: 300 !important;
@@ -185,14 +197,13 @@ h2.doc-header{
   background-color: white;
 }
 
-
 /*INDEX PAGE*/
 .section1{
   width: 100%;
 
   min-height: 100%;
-  margin-top: -450px;
-  padding-top: 800px;
+  margin-top: -50px;
+  padding-top: 950px;
   padding-left: 10%;
   padding-right: 10%;
   /*background-color: #262e3b;*/

@@ -78,7 +78,7 @@ code {
   z-index: 10;
   padding: 10px 50px 10px 10px;
   color: #fff;
-  background: url('../img/blacktocat.png') #0090ff no-repeat 95% 50%;
+  background: url('../images/blacktocat.png') #0090ff no-repeat 95% 50%;
   font-weight: 700;
   box-shadow: 0 0 10px rgba(0,0,0,.5);
   border-bottom-left-radius: 2px;
@@ -186,6 +186,7 @@ h2.doc-header{
 
 /*FOOTER*/
 
+
 #footer {
   font-size: 1.6em;
   font-weight: 300 !important;
@@ -197,13 +198,14 @@ h2.doc-header{
   background-color: white;
 }
 
+
 /*INDEX PAGE*/
 .section1{
   width: 100%;
 
   min-height: 100%;
-  margin-top: -50px;
-  padding-top: 950px;
+  margin-top: -450px;
+  padding-top: 800px;
   padding-left: 10%;
   padding-right: 10%;
   /*background-color: #262e3b;*/
